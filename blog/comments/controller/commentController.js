@@ -11,11 +11,11 @@ const getComments = (req,res,next)=>{
 
 const createComment = (req,res,next)=>{
     const commentId = randomBytes(4).toString('hex')
-    const {postComment} = req.body
+    const {content} = req.body
 
     const comments = commentsByPost[req.params.id] || []
 
-    comments.push({id:commentId,postComment})
+    comments.push({id:commentId,content})
     commentsByPost[req.params.id] = comments
 
     res.status(200).json({

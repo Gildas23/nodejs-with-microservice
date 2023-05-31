@@ -11,11 +11,14 @@ const getPosts = (req,res,next)=>{
 }
 
 const createPost = (req,res,next)=>{
-    let {title,message} = req.body
-    const newPost = {title,message}
-    post.id = randomBytes(4).toString('hex')
+    console.log(req.body)
+    let {title,content} = req.body
+    let newPost = {title,content}
+    newPost.id = randomBytes(4).toString('hex')
+
     Posts.push(newPost)
     console.log(Posts)
+
     res.status(200).json({
         status:'success',
         data:{
