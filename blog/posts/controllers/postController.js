@@ -1,6 +1,8 @@
 import Posts from "../models/postModel.js";
 import {randomBytes} from "crypto"
 
+let post = Posts
+
 const getPosts = (req,res,next)=>{
     res.status(200).json({
         status:'success',
@@ -9,14 +11,15 @@ const getPosts = (req,res,next)=>{
 }
 
 const createPost = (req,res,next)=>{
-    const post = ({title,message} = req.body)
+    let {title,message} = req.body
+    const newPost = {title,message}
     post.id = randomBytes(4).toString('hex')
-    Posts.push(post)
-
+    Posts.push(newPost)
+    console.log(Posts)
     res.status(200).json({
         status:'success',
         data:{
-            addedPost:post
+            addedPost:newPost
         }
     })
 }
